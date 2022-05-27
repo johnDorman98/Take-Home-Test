@@ -1,5 +1,6 @@
 import javax.swing.*;
 
+// Main code that calls the function.
 public class ISBNValidator {
     public static void main(String[] args) {
         String userNumber = JOptionPane.showInputDialog("Please enter the ISBN number you wish to validate without " +
@@ -7,7 +8,8 @@ public class ISBNValidator {
 
         giveISBNOutput(userNumber);
     }
-
+    
+    // The main function that takes a users input number and depending on its length it calls the correct method.
     private static void giveISBNOutput(String userNumber) {
         userNumber = checkForX(userNumber);
 
@@ -24,13 +26,15 @@ public class ISBNValidator {
         }
     }
 
+    // This method is used to check if the users number contains an 'x' in which case it gets replaced with the number 10
     public static String checkForX(String originalNumber) {
         if (originalNumber.contains("x")) {
             originalNumber = originalNumber.replace("x", "10");
         }
         return originalNumber;
     }
-
+    
+    // This method is called if the number is 10 digits long and checks if it is a valid number.
     public static String check10DigitISBN(String number) {
         int sum = 0;
 
@@ -51,6 +55,7 @@ public class ISBNValidator {
         return "Invalid";
     }
 
+    // This method is called to check if a 13 digit number is valid.
     public static String check13DigitISBN(String number) {
         int sum = 0;
 
@@ -73,6 +78,7 @@ public class ISBNValidator {
         return "Invalid";
     }
 
+    // This method converts a 10 digit ISBN to a 13 digit on and returns the new number.
     public static String ISBN10Converter(String number) {
         String newISBN13 = "978" + number.substring(0, number.length() - 1);
         int sum = 0;
